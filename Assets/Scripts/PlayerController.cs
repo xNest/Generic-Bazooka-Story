@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -24,7 +25,15 @@ public class PlayerController : MonoBehaviour
             Touch touch = Input.GetTouch(0);
             if (touch.phase == TouchPhase.Began)
             {
-                transform.position += new Vector3(0, movementSpeed, 0);
+                if (transform.position.y >= 3f)
+                {
+                    transform.position = new Vector3(transform.position.x, -3, 0);
+                }
+                else
+                {
+                    transform.position = new Vector3(transform.position.x, transform.position.y + 3, 0);
+                }
+                
             }
 
             Debug.Log(transform.position);
