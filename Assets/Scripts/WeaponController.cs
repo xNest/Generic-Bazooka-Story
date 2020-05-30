@@ -2,14 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class weapon : MonoBehaviour
+public class WeaponController : MonoBehaviour
 {
-
-  
     public Rigidbody2D bullet;
-    private float speed = 6f;
-
-
+    private float bulletSpeed = 6f;
 
     void Start()
     {
@@ -19,14 +15,11 @@ public class weapon : MonoBehaviour
 
     void SpawnBullet()
     {
-
-
-
-        Rigidbody2D instance = Instantiate(bullet, transform);
-        instance.velocity = Vector2.right * speed;
-        
-
+        Rigidbody2D instance = Instantiate(bullet, transform.position, transform.rotation);
+        instance.velocity = Vector2.right * bulletSpeed;
     }
+
+
 
     // Update is called once per frame
     void Update()

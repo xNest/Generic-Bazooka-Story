@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Numerics;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Vector3 = UnityEngine.Vector3;
 
 public class TouchController : MonoBehaviour
@@ -22,11 +23,10 @@ public class TouchController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.touchCount > 0)
+        if (Input.touchCount > 0 && Time.timeScale > 0)
         {
             Touch touch = Input.GetTouch(0);
 
-            // Vector3 touchPos = Camera.main.ScreenToWorldPoint(touch.position);
             // touchPos.z = 0;
 
             // Move Up

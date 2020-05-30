@@ -39,4 +39,5 @@ public class PlayerController : MonoBehaviour
             Debug.Log(transform.position);
         }
     }
+
 }
