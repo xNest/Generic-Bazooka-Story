@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     public Rigidbody2D EnemyRigidbody2D;
+    public Rigidbody2D EnemyColliderRigidbody2D;
     private float _movementSpeed = 1f;
 
     // Start is called before the first frame update
@@ -29,9 +30,12 @@ public class EnemySpawner : MonoBehaviour
             int chase = Random.Range(0, 2);
             if (chase == 0 )
             {
-                Rigidbody2D instance = Instantiate(EnemyRigidbody2D, transform);
+                Rigidbody2D instance = Random.Range(0, 5) > 0
+                    ? Instantiate(EnemyRigidbody2D, transform)
+                    : Instantiate(EnemyColliderRigidbody2D, transform);
+
                 instance.velocity = Vector2.left * _movementSpeed;
-                instance.transform.position = instance.transform.position + Vector3.down * i;
+                instance.transform.position += Vector3.down * i;
                 // maxEnemy += 1;
             }
         }

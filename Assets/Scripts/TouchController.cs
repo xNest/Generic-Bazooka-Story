@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Numerics;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using Vector3 = UnityEngine.Vector3;
 
@@ -26,6 +27,12 @@ public class TouchController : MonoBehaviour
         if (Input.touchCount > 0 && Time.timeScale > 0)
         {
             Touch touch = Input.GetTouch(0);
+
+            if (EventSystem.current.IsPointerOverGameObject(touch.fingerId))
+            {
+                Debug.Log("Touched the UI");
+                return;
+            }
 
             // touchPos.z = 0;
 

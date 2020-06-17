@@ -9,12 +9,17 @@ public class WeaponController : MonoBehaviour
 
     void Start()
     {
-        InvokeRepeating("SpawnBullet",0.5f, 0.5f);
+        // InvokeRepeating("SpawnBullet",0.5f, 0.5f);
     }
 
 
-    void SpawnBullet()
+    public void SpawnBullet()
     {
+        if (Time.timeScale == 0f)
+        {
+            return;
+        }
+
         Rigidbody2D instance = Instantiate(bullet, transform.position, transform.rotation);
         instance.velocity = Vector2.right * bulletSpeed;
     }

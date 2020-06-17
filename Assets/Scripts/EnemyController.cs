@@ -6,8 +6,24 @@ public class EnemyController : MonoBehaviour
 {
     private PointController _pointController;
     private GameController _gameController;
+
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (this.gameObject.CompareTag(("EnemyCollider")))
+        {
+            if (other.gameObject.CompareTag("Player"))
+            {
+                _gameController.EndGame();
+            }
+
+            else if (other.gameObject.CompareTag("bullet"))
+            {
+                Destroy(other.gameObject);
+            }
+
+            return;
+        }
+
         if (other.gameObject.CompareTag("Player"))
         {
             _gameController.EndGame();
@@ -17,12 +33,12 @@ public class EnemyController : MonoBehaviour
             _pointController.Add();
             Destroy(this.gameObject);
         }
-        else if(other.gameObject.CompareTag("Finish"))
+        else if (other.gameObject.CompareTag("Finish"))
         {
             _gameController.EndGame();
         }
-
     }
+
 
     // Start is called before the first frame update
     void Start()
@@ -34,6 +50,5 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
     }
 }
